@@ -1,30 +1,3 @@
-// import React from "react";
-// import { Label, Input } from "reactstrap";
-
-// const MatchBySection = ({ validation }) => {
-//   return (
-//     <div className="p-3 border rounded bg-light">
-//       <div className="mb-3">
-//         <Label className="fw-bold text-primary">Activity Content (Sentences or Paragraph)</Label>
-//         <Input
-//           type="textarea"
-//           name="matchText"
-//           rows="12"
-//           value={validation.values.matchText || ""}
-//           onChange={validation.handleChange}
-//           placeholder="Type your sentences here... Use *word* for blanks."
-//           style={{ fontSize: "15px", lineHeight: "1.6" }}
-//         />
-//         {/* <small className="text-muted mt-2 d-block">
-//           Example: जो बीमारों का इलाज करता है *डॉक्टर*
-//         </small> */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MatchBySection;
-
 import React from "react";
 import { Row, Col, Input, Label, Button } from "reactstrap";
 import { FieldArray } from "formik";
@@ -192,6 +165,34 @@ export default WordFillSection;
 //         <small className="text-muted mt-2 d-block">
 //           Highlighted words will appear as draggable options in the exercise.
 //         </small>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MatchBySection;
+
+/////////////////////////////////////////////////////
+// import React from "react";
+// import { Label, Input } from "reactstrap";
+
+// const MatchBySection = ({ validation }) => {
+//   return (
+//     <div className="p-3 border rounded bg-light">
+//       <div className="mb-3">
+//         <Label className="fw-bold text-primary">Activity Content (Sentences or Paragraph)</Label>
+//         <Input
+//           type="textarea"
+//           name="matchText"
+//           rows="12"
+//           value={validation.values.matchText || ""}
+//           onChange={validation.handleChange}
+//           placeholder="Type your sentences here... Use *word* for blanks."
+//           style={{ fontSize: "15px", lineHeight: "1.6" }}
+//         />
+//         {/* <small className="text-muted mt-2 d-block">
+//           Example: जो बीमारों का इलाज करता है *डॉक्टर*
+//         </small> */}
 //       </div>
 //     </div>
 //   );

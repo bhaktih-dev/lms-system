@@ -7,7 +7,8 @@ const Authmiddleware = (props) => {
   if (!localStorage.getItem("authUser")) {
     return (
       <Navigate
-        to="/admin/login"
+        // to="/admin/login"
+        to="/login"
         // Pass only the pathname string, NOT the whole object
         state={{ from: location.pathname }}
         replace

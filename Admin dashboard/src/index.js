@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.Fragment>
-      {/* <BrowserRouter basename="/admin/login"> */}
-      <BrowserRouter>
+      <BrowserRouter basename="/admin">
+      {/* <BrowserRouter> */}
         <App />
       </BrowserRouter>
     </React.Fragment>

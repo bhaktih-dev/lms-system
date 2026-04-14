@@ -66,8 +66,8 @@ const App = () => {
       {/* 1. Open the Routes container first */}
       <Routes>
         {/* 2. Place the /admin redirect inside here */}
-        <Route path="/admin" element={<Navigate to="/admin/login" />} />
-
+        {/* <Route path="/admin" element={<Navigate to="/admin/login" />} /> */}
+        <Route path="/" element={<Navigate to="/login" />} />
         {/* 3. Map your public routes */}
         {publicRoutes.map((route, idx) => (
           <Route

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Col, Container, Form, Row, Input, Label, FormFeedback } from "reactstrap";
+import {
+  Col,
+  Container,
+  Form,
+  Row,
+  Input,
+  Label,
+  FormFeedback,
+} from "reactstrap";
 
 // Formik validation
 import * as Yup from "yup";
@@ -23,8 +31,8 @@ const Login2 = () => {
     enableReinitialize: true,
 
     initialValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Please Enter Your Username"),
@@ -32,7 +40,7 @@ const Login2 = () => {
     }),
     onSubmit: (values) => {
       console.log("values", values);
-    }
+    },
   });
   return (
     <React.Fragment>
@@ -46,7 +54,7 @@ const Login2 = () => {
                 <div className="w-100">
                   <div className="d-flex flex-column h-100">
                     <div className="mb-4 mb-md-5">
-                      <Link to="/admin/dashboard" className="d-block auth-logo">
+                      <Link to="/dashboard" className="d-block auth-logo">
                         <img
                           src={logodark}
                           alt=""
@@ -70,7 +78,8 @@ const Login2 = () => {
                       </div>
 
                       <div className="mt-4">
-                        <Form className="form-horizontal"
+                        <Form
+                          className="form-horizontal"
                           onSubmit={(e) => {
                             e.preventDefault();
                             validation.handleSubmit();
@@ -88,17 +97,28 @@ const Login2 = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.username || ""}
                               invalid={
-                                validation.touched.username && validation.errors.username ? true : false
+                                validation.touched.username &&
+                                validation.errors.username
+                                  ? true
+                                  : false
                               }
                             />
-                            {validation.touched.username && validation.errors.username ? (
-                              <FormFeedback type="invalid">{validation.errors.username}</FormFeedback>
+                            {validation.touched.username &&
+                            validation.errors.username ? (
+                              <FormFeedback type="invalid">
+                                {validation.errors.username}
+                              </FormFeedback>
                             ) : null}
                           </div>
 
                           <div className="mb-3">
                             <div className="float-end">
-                              <Link to="/auth-recoverpw-2" className="text-muted">Forgot password?</Link>
+                              <Link
+                                to="/auth-recoverpw-2"
+                                className="text-muted"
+                              >
+                                Forgot password?
+                              </Link>
                             </div>
                             <Label className="form-label">Password</Label>
                             <div className="input-group auth-pass-inputgroup">
@@ -110,14 +130,26 @@ const Login2 = () => {
                                 onChange={validation.handleChange}
                                 onBlur={validation.handleBlur}
                                 invalid={
-                                  validation.touched.password && validation.errors.password ? true : false
+                                  validation.touched.password &&
+                                  validation.errors.password
+                                    ? true
+                                    : false
                                 }
                               />
-                              <button onClick={() => setPasswordShow(!passwordShow)} className="btn btn-light " type="button" id="password-addon">
-                                <i className="mdi mdi-eye-outline"></i></button>
+                              <button
+                                onClick={() => setPasswordShow(!passwordShow)}
+                                className="btn btn-light "
+                                type="button"
+                                id="password-addon"
+                              >
+                                <i className="mdi mdi-eye-outline"></i>
+                              </button>
                             </div>
-                            {validation.touched.password && validation.errors.password ? (
-                              <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
+                            {validation.touched.password &&
+                            validation.errors.password ? (
+                              <FormFeedback type="invalid">
+                                {validation.errors.password}
+                              </FormFeedback>
                             ) : null}
                           </div>
 
@@ -143,14 +175,11 @@ const Login2 = () => {
                               Log In
                             </button>
                           </div>
-
                         </Form>
 
                         <Form action="dashboard">
                           <div className="mt-4 text-center">
-                            <h5 className="font-size-14 mb-3">
-                              Sign in with
-                            </h5>
+                            <h5 className="font-size-14 mb-3">Sign in with</h5>
 
                             <ul className="list-inline">
                               <li className="list-inline-item">

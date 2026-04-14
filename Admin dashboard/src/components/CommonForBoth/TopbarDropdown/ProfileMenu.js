@@ -17,7 +17,7 @@ import withRouter from "components/Common/withRouter";
 // users
 import user1 from "../../../assets/images/users/avatar-1.jpg";
 
-const ProfileMenu = props => {
+const ProfileMenu = (props) => {
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false);
 
@@ -59,7 +59,7 @@ const ProfileMenu = props => {
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-          <DropdownItem tag="a" href="/profile">
+          <DropdownItem tag="a" href="profile">
             {" "}
             <i className="bx bx-user font-size-16 align-middle me-1" />
             {props.t("Profile")}{" "}
@@ -78,7 +78,7 @@ const ProfileMenu = props => {
             {props.t("Lock screen")}
           </DropdownItem> */}
           <div className="dropdown-divider" />
-          <Link to="/admin/logout" className="dropdown-item">
+          <Link to="/logout" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
             <span>{props.t("Logout")}</span>
           </Link>
@@ -93,11 +93,11 @@ ProfileMenu.propTypes = {
   t: PropTypes.any,
 };
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   const { error, success } = state.Profile;
   return { error, success };
 };
 
 export default withRouter(
-  connect(mapStatetoProps, {})(withTranslation()(ProfileMenu))
+  connect(mapStatetoProps, {})(withTranslation()(ProfileMenu)),
 );

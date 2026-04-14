@@ -24,10 +24,7 @@ import withRouter from "components/Common/withRouter";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-//Social Media Imports
-import { GoogleLogin } from "react-google-login";
-// import TwitterLogin from "react-twitter-auth"
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+
 
 // actions
 import { loginUser, socialLogin } from "../../store/actions";
@@ -39,7 +36,7 @@ import logo from "assets/images/logo.svg";
 //Import config
 import { facebook, google } from "../../config";
 
-const Login = props => {
+const Login = (props) => {
   //meta title
   document.title = "Login | Konzeptes";
 
@@ -62,7 +59,7 @@ const Login = props => {
       email: Yup.string().required("Please Enter Your Email"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         const response = await postLmsLogin({
           email: values.email,
@@ -76,11 +73,19 @@ const Login = props => {
         }
 
         // ✅ Store user info
-        localStorage.setItem("authUser", JSON.stringify(response.user));
+        // localStorage.setItem("authUser", JSON.stringify(response.user));
+        const user = {
+          name: response.user.name,
+          email: response.user.email,
+          role: response.user.role,
+          mobile: response.user.mobile || response.user.mobile_number || "",
+        };
+        console.log("LOGIN RESPONSE:", response);
+        localStorage.setItem("authUser", JSON.stringify(user));
         localStorage.setItem("isLoggedIn", "true");
 
         // ✅ Redirect after login
-        props.router.navigate("/admin/dashboard");
+        props.router.navigate("/dashboard");
       } catch (error) {
         // 🔴 VERY IMPORTANT DIFFERENTIATION
         if (error.response) {
@@ -94,7 +99,7 @@ const Login = props => {
     },
   });
 
-  const { error } = useSelector(state => ({
+  const { error } = useSelector((state) => ({
     error: state.Login.error,
   }));
 
@@ -118,18 +123,6 @@ const Login = props => {
     }
   };
 
-  //handleGoogleLoginResponse
-  const googleResponse = response => {
-    signIn(response, "google");
-  };
-
-  //handleTwitterLoginResponse
-  // const twitterResponse = e => {}
-
-  //handleFacebookLoginResponse
-  const facebookResponse = response => {
-    signIn(response, "facebook");
-  };
 
   return (
     <React.Fragment>
@@ -174,7 +167,7 @@ const Login = props => {
                   <div className="p-2">
                     <Form
                       className="form-horizontal"
-                      onSubmit={e => {
+                      onSubmit={(e) => {
                         e.preventDefault();
                         validation.handleSubmit();
                         return false;
