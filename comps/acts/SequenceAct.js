@@ -1216,7 +1216,7 @@ if (b.isHint) bClass += ` ${styles.hintBorder}`;
                   className={`${styles.btn} ${styles.primary}`}
                   onClick={handleFinish}
                 >
-                  Nextt
+                  Next
                 </button>
               </div>
             </div>
