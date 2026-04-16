@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import { apiService } from '../utils/apiService';
-import Intro from 'konzeptes/Intro';
-import Head from 'next/head';
-import './login.css';
-import { Eye, EyeOff, Mail } from 'lucide-react';
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import { apiService } from "../utils/apiService";
+import Intro from "konzeptes/Intro";
+import Head from "next/head";
+import "./login.css";
+import { Eye, EyeOff, Mail } from "lucide-react";
 
 export default function HomeView() {
   const [isSignup, setIsSignup] = useState(false);
@@ -12,31 +12,31 @@ export default function HomeView() {
   const [showPass, setShowPass] = useState(false);
 
   const [form, setForm] = useState({
-    email: '',
-    password: '',
-    salutation: '',
-    p_first: '',
-    p_last: '',
-    c_first: '',
-    c_last: '',
-    level: '',
-    mobile: '',
-    package: '',
+    email: "",
+    password: "",
+    salutation: "",
+    p_first: "",
+    p_last: "",
+    c_first: "",
+    c_last: "",
+    level: "",
+    mobile: "",
+    package: "",
   });
 
   // 1. Initial check for logged in status
   useEffect(() => {
-    const loggedIn = localStorage.getItem('isLoggedIn');
-    if (loggedIn === 'true') setIsLoggedIn(true);
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    if (loggedIn === "true") setIsLoggedIn(true);
   }, []);
 
   // 2. NEW: Fire the popup AFTER the redirect happens
   useEffect(() => {
     if (isLoggedIn) {
-      const showPopup = localStorage.getItem('show_login_popup');
-      if (showPopup === 'true') {
+      const showPopup = localStorage.getItem("show_login_popup");
+      if (showPopup === "true") {
         // Remove the flag so it doesn't show again on manual page reloads
-        localStorage.removeItem('show_login_popup');
+        localStorage.removeItem("show_login_popup");
 
         Swal.fire({
           html: `
@@ -50,15 +50,15 @@ export default function HomeView() {
             </div>
           `,
           showConfirmButton: true,
-          confirmButtonText: 'OK',
+          confirmButtonText: "OK",
           buttonsStyling: false,
-          width: '380px',
-          background: '#f4f9f4', // Off-white/light-green matching your image
+          width: "380px",
+          background: "#f4f9f4", // Off-white/light-green matching your image
           backdrop: `rgba(0,0,0,0.7)`, // Fallback color
           customClass: {
-            popup: 'custom-login-popup',
-            backdrop: 'custom-blur-backdrop',
-            confirmButton: 'custom-login-btn',
+            popup: "custom-login-popup",
+            backdrop: "custom-blur-backdrop",
+            confirmButton: "custom-login-btn",
           },
         });
       }
@@ -67,7 +67,7 @@ export default function HomeView() {
 
   const validatePassword = (password) => {
     return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]\\;':,.\/?]).{1,16}$/.test(
-      password
+      password,
     );
   };
 
@@ -139,8 +139,8 @@ export default function HomeView() {
 
     // 🌟 FIX: Grab exact values directly from the DOM to bypass React's autofill blindspot
     const submitData = new FormData(e.target);
-    const actualEmail = submitData.get('email');
-    const actualPassword = submitData.get('password');
+    const actualEmail = submitData.get("email");
+    const actualPassword = submitData.get("password");
 
     // Use actualPassword instead of form.password for validation
     if (isSignup && !validatePassword(actualPassword)) return;
@@ -166,35 +166,35 @@ export default function HomeView() {
 
       const { data } = await action(payload);
 
-      if (data.status === 'success') {
+      if (data.status === "success") {
         if (isSignup) {
           await Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Registration Successful!',
-            confirmButtonColor: '#33691e',
+            icon: "success",
+            title: "Success!",
+            text: "Registration Successful!",
+            confirmButtonColor: "#33691e",
           });
           setIsSignup(false);
         } else {
-          localStorage.setItem('user_id', data.user_id);
-          localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('child_name', data.child_name || 'Student');
+          localStorage.setItem("user_id", data.user_id);
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("child_name", data.child_name || "Student");
 
-          localStorage.setItem('show_login_popup', 'true');
+          localStorage.setItem("show_login_popup", "true");
           setIsLoggedIn(true);
         }
       } else {
         Swal.fire({
-          icon: 'error',
-          text: data.message || 'Action Failed',
-          confirmButtonColor: '#33691e',
+          icon: "error",
+          text: data.message || "Action Failed",
+          confirmButtonColor: "#33691e",
         });
       }
     } catch (err) {
       Swal.fire({
-        icon: 'error',
-        text: 'Server Connection Error',
-        confirmButtonColor: '#33691e',
+        icon: "error",
+        text: "Server Connection Error",
+        confirmButtonColor: "#33691e",
       });
     }
   };
@@ -234,7 +234,7 @@ export default function HomeView() {
             box-shadow: none !important; /* Removes the default browser glow */
             padding: 10px 36px !important;
             border-radius: 8px !important;
-            font-family: 'Quicksand', sans-serif !important;
+            font-family: "Quicksand", sans-serif !important;
             font-weight: 700 !important;
             font-size: 15px !important;
             cursor: pointer !important;
@@ -261,12 +261,12 @@ export default function HomeView() {
     <div className="auth-page">
       <Head>
         <title>
-          {isSignup ? 'Konzeptes | Register  page ' : 'Konzeptes | Login Page '}
+          {isSignup ? "Konzeptes | Register  page " : "Konzeptes | Login Page "}
         </title>
       </Head>
 
       <div
-        className={`auth-card-container ${isSignup ? 'register-mode' : 'login-mode'}`}
+        className={`auth-card-container ${isSignup ? "register-mode" : "login-mode"}`}
       >
         {/* Your form code exactly as it was... */}
         <img src="/img/konzeptes/logo.png" className="auth-logo" alt="Logo" />
@@ -281,7 +281,7 @@ export default function HomeView() {
                 <input
                   name="email"
                   type="email"
-                  placeholder="Email Address"
+                  placeholder="Email Address/Username"
                   required
                   value={form.email}
                   onChange={handleChange}
@@ -296,7 +296,7 @@ export default function HomeView() {
               <div className="password-container full-width-field">
                 <input
                   name="password"
-                  type={showPass ? 'text' : 'password'}
+                  type={showPass ? "text" : "password"}
                   placeholder="Password"
                   required
                   value={form.password}
@@ -458,7 +458,7 @@ export default function HomeView() {
                   <div className="password-container col-12">
                     <input
                       name="password"
-                      type={showPass ? 'text' : 'password'}
+                      type={showPass ? "text" : "password"}
                       placeholder="Password"
                       required
                       value={form.password}
@@ -484,13 +484,13 @@ export default function HomeView() {
           <button
             type="submit"
             className={
-              isSignup ? 'main-submit-btn-register' : 'main-submit-btn'
+              isSignup ? "main-submit-btn-register" : "main-submit-btn"
             }
           >
-            {isSignup ? 'Register Now' : 'Login !'}
+            {isSignup ? "Register Now" : "Login !"}
           </button>
           <p className="toggle-view" onClick={() => setIsSignup(!isSignup)}>
-            {isSignup ? 'Back to Login' : 'Create New Account'}
+            {isSignup ? "Back to Login" : "Create New Account"}
           </p>
         </form>
       </div>
